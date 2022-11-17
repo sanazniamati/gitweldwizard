@@ -1,15 +1,15 @@
 import { Circle, Layer, Rect } from "react-konva";
 
-function Layer1({ width, height, showCircle, showRect }) {
+function Layer1({ width, height, color, showCircle, showRect }) {
   return (
     <Layer>
       <Rect
         visible={showRect}
         x={100}
-        y={100}
+        y={50}
         width={width}
         height={height}
-        fill={"yellow"}
+        fill={color}
         stroke={"black"}
         strokeWidth={2}
       />

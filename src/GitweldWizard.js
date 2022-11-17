@@ -4,6 +4,7 @@ import { jsPDF } from "jspdf";
 import Wizard from "./Wizard";
 import Page2 from "./Page2";
 import Page1 from "./Page1";
+import Page4 from "./Page4";
 import Page3 from "./Page3";
 
 const GitweldWizard = () => {
@@ -27,7 +28,7 @@ const GitweldWizard = () => {
     setWidth(width - 15);
     console.log("width: " + width);
   };
-  const handelIncWHeight = () => {
+  const handelIncHeight = () => {
     setHeight(height + 15);
     console.log("height: " + height);
   };
@@ -35,7 +36,10 @@ const GitweldWizard = () => {
     setHeight(height - 15);
     console.log("height: " + height);
   };
-  //-------------
+  const [color, setColor] = useState("");
+  const handelSetColor = () => {
+    setColor("yellow");
+  };
   const stageRef = useRef(null);
   const handleExportPNG = () => {
     // Convert the canvas to data
@@ -52,7 +56,6 @@ const GitweldWizard = () => {
     // Cleanup the DOM
     document.body.removeChild(aDownloadLink);
   };
-
   const handelExportPDF = () => {
     const pdf = new jsPDF("l", "px", [500, 500]);
     pdf.setTextColor("#000000");
@@ -81,6 +84,7 @@ const GitweldWizard = () => {
         stageRef={stageRef}
         width={width}
         height={height}
+        color={color}
         showRect={showRect}
         showCircle={showCircle}
       >
@@ -92,8 +96,11 @@ const GitweldWizard = () => {
         <Page2
           handelIncWidth={handelIncWidth}
           handelDecWidth={handelDecWidth}
+          handelIncHeight={handelIncHeight}
+          handelDecHeight={handelDecHeight}
         />
-        <Page3
+        <Page3 handelSetColor={handelSetColor} />
+        <Page4
           handleExportPNG={handleExportPNG}
           handelExportPDF={handelExportPDF}
         />

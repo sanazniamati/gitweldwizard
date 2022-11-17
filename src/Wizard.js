@@ -3,11 +3,13 @@ import { Button } from "react-bootstrap";
 import { Stage } from "react-konva";
 import Layer1 from "./Layer1";
 import Layer2 from "./Layer2";
+import Layer3 from "./Layer3";
 
 const Wizard = ({
   children,
   width,
   height,
+  color,
   stageRef,
   showCircle,
   showRect,
@@ -58,15 +60,37 @@ const Wizard = ({
           <Layer1
             width={width}
             height={height}
+            color={color}
             showRect={showRect}
             showCircle={showCircle}
           />
         ) : null}
         {activePageIndex === 1 ? (
-          <Layer2 width={width} showRect={showRect} showCircle={showCircle} />
+          <Layer2
+            width={width}
+            height={height}
+            color={color}
+            showRect={showRect}
+            showCircle={showCircle}
+          />
         ) : null}
         {activePageIndex === 2 ? (
-          <Layer2 width={width} showRect={showRect} showCircle={showCircle} />
+          <Layer3
+            width={width}
+            height={height}
+            color={color}
+            showRect={showRect}
+            showCircle={showCircle}
+          />
+        ) : null}
+        {activePageIndex === 3 ? (
+          <Layer3
+            width={width}
+            height={height}
+            color={color}
+            showRect={showRect}
+            showCircle={showCircle}
+          />
         ) : null}
       </Stage>
       <div>

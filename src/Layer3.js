@@ -1,8 +1,8 @@
-import Layer1 from "./Layer1";
+import Layer2 from "./Layer2";
 
-function Layer2({ width, height, color, showCircle, showRect }) {
+function Layer3({ width, height, color, showCircle, showRect }) {
   return (
-    <Layer1
+    <Layer2
       showRect={showRect}
       showCircle={showCircle}
       width={width}
@@ -12,4 +12,4 @@ function Layer2({ width, height, color, showCircle, showRect }) {
   );
 }
 
-export default Layer2;
+export default Layer3;
