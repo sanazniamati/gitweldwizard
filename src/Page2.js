@@ -5,6 +5,8 @@ function Page2({
   handelIncWidth,
   handelIncHeight,
   handelDecHeight,
+  handelDecRadius,
+  handelIncRadius,
 }) {
   return (
     <div>
@@ -13,6 +15,8 @@ function Page2({
       <button onClick={handelDecWidth}>width : -</button>
       <button onClick={handelIncHeight}>height : +</button>
       <button onClick={handelDecHeight}>height : -</button>
+      <button onClick={handelIncRadius}>radius : +</button>
+      <button onClick={handelDecRadius}>radius : -</button>
     </div>
   );
 }

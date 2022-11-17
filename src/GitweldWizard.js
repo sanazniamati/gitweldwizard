@@ -8,15 +8,22 @@ import Page4 from "./Page4";
 import Page3 from "./Page3";
 
 const GitweldWizard = () => {
-  const [showRect, setShowRect] = useState(false);
   const [showCircle, setShowCircle] = useState(false);
-  const handelCreateRect = () => {
-    setShowRect((showRect) => !showRect);
-    console.log("showRect :" + showRect);
-  };
   const handelCreateCircle = () => {
     setShowCircle((showCircle) => !showCircle);
     console.log("showCircle: " + showCircle);
+  };
+  const [radius, setRadius] = useState(20);
+  const handelDecRadius = () => {
+    setRadius(radius - 5);
+  };
+  const handelIncRadius = () => {
+    setRadius(radius + 5);
+  };
+  const [showRect, setShowRect] = useState(false);
+  const handelCreateRect = () => {
+    setShowRect((showRect) => !showRect);
+    console.log("showRect :" + showRect);
   };
   const [width, setWidth] = useState(100);
   const [height, setHeight] = useState(50);
@@ -36,9 +43,19 @@ const GitweldWizard = () => {
     setHeight(height - 15);
     console.log("height: " + height);
   };
-  const [color, setColor] = useState("");
-  const handelSetColor = () => {
-    setColor("yellow");
+  const [rectColor, setRectColor] = useState("");
+  const [circleColor, setCircleColor] = useState("");
+  const handelSetColorYellowRect = () => {
+    setRectColor("yellow");
+  };
+  const handelSetColorYellowCircle = () => {
+    setCircleColor("yellow");
+  };
+  const handelSetColorGreenRect = () => {
+    setRectColor("green");
+  };
+  const handelSetColorGreenCircle = () => {
+    setCircleColor("green");
   };
   const stageRef = useRef(null);
   const handleExportPNG = () => {
@@ -84,7 +101,9 @@ const GitweldWizard = () => {
         stageRef={stageRef}
         width={width}
         height={height}
-        color={color}
+        rectColor={rectColor}
+        circleColor={circleColor}
+        radius={radius}
         showRect={showRect}
         showCircle={showCircle}
       >
@@ -98,8 +117,15 @@ const GitweldWizard = () => {
           handelDecWidth={handelDecWidth}
           handelIncHeight={handelIncHeight}
           handelDecHeight={handelDecHeight}
+          handelDecRadius={handelDecRadius}
+          handelIncRadius={handelIncRadius}
         />
-        <Page3 handelSetColor={handelSetColor} />
+        <Page3
+          handelSetColorYellowRect={handelSetColorYellowRect}
+          handelSetColorGreenRect={handelSetColorGreenRect}
+          handelSetColorYellowCircle={handelSetColorYellowCircle}
+          handelSetColorGreenCircle={handelSetColorGreenCircle}
+        />
         <Page4
           handleExportPNG={handleExportPNG}
           handelExportPDF={handelExportPDF}

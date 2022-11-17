@@ -9,7 +9,9 @@ const Wizard = ({
   children,
   width,
   height,
-  color,
+  radius,
+  circleColor,
+  rectColor,
   stageRef,
   showCircle,
   showRect,
@@ -60,7 +62,9 @@ const Wizard = ({
           <Layer1
             width={width}
             height={height}
-            color={color}
+            circleColor={circleColor}
+            rectColor={rectColor}
+            radius={radius}
             showRect={showRect}
             showCircle={showCircle}
           />
@@ -69,7 +73,9 @@ const Wizard = ({
           <Layer2
             width={width}
             height={height}
-            color={color}
+            circleColor={circleColor}
+            rectColor={rectColor}
+            radius={radius}
             showRect={showRect}
             showCircle={showCircle}
           />
@@ -78,7 +84,9 @@ const Wizard = ({
           <Layer3
             width={width}
             height={height}
-            color={color}
+            circleColor={circleColor}
+            rectColor={rectColor}
+            radius={radius}
             showRect={showRect}
             showCircle={showCircle}
           />
@@ -87,7 +95,9 @@ const Wizard = ({
           <Layer3
             width={width}
             height={height}
-            color={color}
+            radius={radius}
+            circleColor={circleColor}
+            rectColor={rectColor}
             showRect={showRect}
             showCircle={showCircle}
           />

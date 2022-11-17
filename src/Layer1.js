@@ -1,6 +1,14 @@
 import { Circle, Layer, Rect } from "react-konva";
 
-function Layer1({ width, height, color, showCircle, showRect }) {
+function Layer1({
+  width,
+  height,
+  radius,
+  circleColor,
+  rectColor,
+  showCircle,
+  showRect,
+}) {
   return (
     <Layer>
       <Rect
@@ -9,11 +17,18 @@ function Layer1({ width, height, color, showCircle, showRect }) {
         y={50}
         width={width}
         height={height}
-        fill={color}
+        fill={rectColor}
         stroke={"black"}
         strokeWidth={2}
       />
-      <Circle visible={showCircle} radius={30} x={50} y={50} stroke={"blue"} />
+      <Circle
+        visible={showCircle}
+        radius={radius}
+        x={50}
+        y={50}
+        fill={circleColor}
+        stroke={"blue"}
+      />
     </Layer>
   );
 }
