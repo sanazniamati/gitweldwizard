@@ -4,7 +4,14 @@ import { Stage } from "react-konva";
 import Layer1 from "./Layer1";
 import Layer2 from "./Layer2";
 
-const Wizard = ({ children, stageRef, width, showCircle, showRect }) => {
+const Wizard = ({
+  children,
+  width,
+  height,
+  stageRef,
+  showCircle,
+  showRect,
+}) => {
   const [activePageIndex, setActivePageIndex] = useState(0);
   const pages = React.Children.toArray(children);
   const currentPage = pages[activePageIndex];
@@ -48,7 +55,12 @@ const Wizard = ({ children, stageRef, width, showCircle, showRect }) => {
         style={{ background: "lightpink" }}
       >
         {activePageIndex === 0 ? (
-          <Layer1 width={width} showRect={showRect} showCircle={showCircle} />
+          <Layer1
+            width={width}
+            height={height}
+            showRect={showRect}
+            showCircle={showCircle}
+          />
         ) : null}
         {activePageIndex === 1 ? (
           <Layer2 width={width} showRect={showRect} showCircle={showCircle} />

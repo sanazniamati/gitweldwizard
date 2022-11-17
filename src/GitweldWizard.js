@@ -27,33 +27,52 @@ const GitweldWizard = () => {
     setWidth(width - 15);
     console.log("width: " + width);
   };
+  const handelIncWHeight = () => {
+    setHeight(height + 15);
+    console.log("height: " + height);
+  };
+  const handelDecHeight = () => {
+    setHeight(height - 15);
+    console.log("height: " + height);
+  };
   //-------------
   const stageRef = useRef(null);
-  function downloadURI(dataUrl, name) {
-    // Construct the 'a' element
-    const link = document.createElement("a");
-    link.download = name;
-    // Construct the URI
-    link.href = dataUrl;
-    document.body.appendChild(link);
-    link.click();
+  const handleExportPNG = () => {
+    // Convert the canvas to data
+    const image = stageRef.current.toDataURL({ pixelRatio: 2 });
+    // Create a link
+    const aDownloadLink = document.createElement("a");
+    // Add the name of the file to the link
+    aDownloadLink.download = "canvas_image.png";
+    // Attach the data to the link
+    aDownloadLink.href = image;
+    document.body.appendChild(aDownloadLink);
+    // Get the code to click the download link
+    aDownloadLink.click();
     // Cleanup the DOM
-    document.body.removeChild(link);
-  }
-  const handleExport = () => {
-    var pdf = new jsPDF();
-    const dataUrl = stageRef.current.toDataURL({ pixelRatio: 2 });
-    const pdfData = pdf.addImage(dataUrl, "JPEG", 15, 40, 200, 100);
-    // const dataUrl = stageRef.current.toDataURL({ pixelRatio: 3 });
-    // we also can save url as file
-    // but in the demo on Konva website it will not work
-    // because of iframe restrictions
-    // but feel free to use it in your apps:
-    // downloadURI(dataUrl, "stage.pdf");
-    // downloadURI(dataUrl, "stageJason.json");
-    // downloadURI(dataUrl, "stageJpeg.jpeg");
-    // downloadURI(dataUrl, "stageSVG.svg");
-    downloadURI(pdfData, "stagePNG.pdf");
+    document.body.removeChild(aDownloadLink);
+  };
+
+  const handelExportPDF = () => {
+    const pdf = new jsPDF("l", "px", [500, 500]);
+    pdf.setTextColor("#000000");
+    // first add texts
+    stageRef.current.find("Text").forEach((text) => {
+      const size = text.fontSize() / 0.75; // convert pixels to points
+      pdf.setFontSize(size);
+      pdf.text(text.text(), text.x(), text.y(), {
+        baseline: "top",
+        angle: -text.getAbsoluteRotation(),
+      });
+    });
+    pdf.addImage(
+      stageRef.current.toDataURL({ pixelRatio: 2 }),
+      0,
+      0,
+      stageRef.current.width(),
+      stageRef.current.height()
+    );
+    pdf.save("canvas.pdf");
   };
 
   return (
@@ -61,6 +80,7 @@ const GitweldWizard = () => {
       <Wizard
         stageRef={stageRef}
         width={width}
+        height={height}
         showRect={showRect}
         showCircle={showCircle}
       >
@@ -73,7 +93,10 @@ const GitweldWizard = () => {
           handelIncWidth={handelIncWidth}
           handelDecWidth={handelDecWidth}
         />
-        <Page3 handleExport={handleExport} />
+        <Page3
+          handleExportPNG={handleExportPNG}
+          handelExportPDF={handelExportPDF}
+        />
       </Wizard>
     </Card>
   );

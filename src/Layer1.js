@@ -1,6 +1,6 @@
 import { Circle, Layer, Rect } from "react-konva";
 
-function Layer1({ width, showCircle, showRect }) {
+function Layer1({ width, height, showCircle, showRect }) {
   return (
     <Layer>
       <Rect
@@ -8,7 +8,7 @@ function Layer1({ width, showCircle, showRect }) {
         x={100}
         y={100}
         width={width}
-        height={50}
+        height={height}
         fill={"yellow"}
         stroke={"black"}
         strokeWidth={2}
